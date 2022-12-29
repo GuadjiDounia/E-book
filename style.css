@@ -79,6 +79,7 @@ img{
   font-weight: 700;
   font-size: 2rem;
   padding: 0rem 1.5rem;
+  
 
 }
 .logo span {
@@ -90,7 +91,7 @@ img{
   margin: 0.5rem;
 
 }
-.nav-item :first-child .nav-link {
+.nav-item:first-child .nav-link {
 
   color: var(--primair)
 }
@@ -103,10 +104,10 @@ img{
 }
 .nav .icons div {
    font-size: 2rem;
-   padding: 0.5 rem;
+   padding: 0.5rem;
    cursor: pointer;
    transition: all 300ms ease-in-out;
-}
+} 
 .nav .icons div:not(:last-child){
   margin-right: 0.5rem;
 } 
@@ -140,11 +141,13 @@ img{
   .menu{
     position: fixed;
     top: 0;
-    left: -100%;
+    left: 0;
+    /*left: -100%;*/
     background-color: var(--blanche);
     height: 100%;
+    width: 80%;
     max-width: 45rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0.1); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0,  0.1); 
     transition: all ease-in-out;
     z-index: 100;
   }
@@ -202,9 +205,6 @@ img{
 .nav-link{
   padding: 0.7rem;
 }
-
-
-
 
 
 
