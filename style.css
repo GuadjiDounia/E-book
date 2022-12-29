@@ -9,3 +9,43 @@
   --gris: #888;
 
 }
+
+*,
+*::before
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html{
+  box-sizing: border-box;
+  font-size: 62.5% ;
+
+}
+
+body{
+  font-family: 'poppins', sans-serif;
+  font-size: 1.6rem;
+  color: var( --noir);
+  background-color: var(--blanche);
+}
+ul, li {
+  list-style: none;
+
+}
+a{
+  text-decoration: none;
+  columns: inherit;
+}
+img{
+  max-width: 100%;
+}
+
+.promo{
+  background-color: var(--primair);
+  text-align: center;
+  color: var(--blanche);
+  padding: 0.5rem 0;
+  
+}
