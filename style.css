@@ -295,18 +295,21 @@ img{
 }
 
 .section{
-  padding: 10rem 0 0 ;
+  padding: 30rem 50rem 50rem 0;
+  
 }
 
 
  
 }
+
 .service{
   border: 1px solid #ccc;
   padding: 1rem 1rem 2rem 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
+  
 }
 .service-center{
   display: grid;
@@ -347,7 +350,7 @@ img{
   font-weight: 400;
 }
 .titre span {
-  color: var (--primair);
+  color: var(--primair);
 }
 .centre-produit{
   display: grid;
@@ -430,7 +433,48 @@ img{
   grid-row-start: 5;
   grid-row-end: 9;
  }
- 
+ .footer{
+  background-color: var(--noir);
+  padding: 6rem 1rem 0;
+  line-height: 3rem;
+  margin-top: 5rem ;
+ }
+ .footer  span {
+  margin-right: 1rem;
+ }
+ .footer-container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  color: var(--blanche);
+
+ }
+ .footer-center a:link
+ .footer-center a:visited{
+  display: block;
+  color: var(--gris);
+  font-size: 1.4rem;
+  transform: 0.6s;
+ }
+ .footer-center a:hover{
+  color: var(--primair);
+ }
+ .footer-center div{
+  font-size: 1.4rem;
+ }
+ .footer-center h3{
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+ }
+ .copyright{
+  color: var(--gris);
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 4rem 0 0 0;
+ }
+
+ }
 
 
 
