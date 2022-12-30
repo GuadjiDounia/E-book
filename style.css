@@ -293,9 +293,13 @@ img{
   height: 35rem;
   right: 0;
 }
-.section {
-  padding: 10rem 0 0 0;
+
+.section{
+  padding: 10rem;
 }
+
+
+ 
 }
 .service{
   border: 1px solid #ccc;
@@ -304,9 +308,9 @@ img{
   align-items: center;
   flex-direction: column;
 }
-.serice-center{
+.service-center{
   display: grid;
-  grid-template-columns: repeat(auto-fit, manmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 5rem;
 }
 .service .icon{
@@ -336,4 +340,3 @@ img{
 
 
 
-}
