@@ -1,0 +1,112 @@
+<! ///////// details de chaque livre//////////>
+ <div class="small-container single-product">
+     <div class="row">
+      <div class="col-2">
+        
+          <img src="https://static.fnac-static.com/multimedia/Images/FR/NR/5a/38/d0/13645914/1545-1/tsp20210702230736/Les-Promises.jpg" width="30%" id="ProductImg">
+          
+
+          <div class="small-img-row">
+            <div class="small-img-col">
+               <img src="https://static.fnac-static.com/multimedia/Images/FR/NR/63/12/e1/14750307/1540-1/tsp20221109080343/A-tout-jamais.jpg" width="30%"
+               class="small-img">
+          
+            <img src="https://static.fnac-static.com/multimedia/Images/FR/NR/5a/38/d0/13645914/1545-1/tsp20210702230736/Les-Promises.jpg" width="30%"
+            class="small-img">
+       </div>
+
+       
+          </div>
+      </div>
+          <div class="col-2">
+          <p> Accueil / Boutique</p>
+          <h1>livre coleen hoovee</h1>
+          <h4>1200DA</h4>
+          <select>
+          <input type="number" value="1">
+          <a href="#" class="btn">ajouté au panier</a>
+          <h3> details du produit <i class="fa fa-indent"></i>
+          </h3>
+          <br>
+          <p>ce livre sortie en xxxx est une masterclass lis dans iuerzoiezqrpoiezpo</p>
+        </select>
+      </div>
+        </div>
+     </div>
+      
+
+     <!-------title-->
+       
+     <div class="small-container">
+       <div class="row row-2">
+        <h2> Produit du meme genre</h2>
+           <p>voir plus</p>
+           
+
+       </div>
+
+     </div>
+
+
+
+
+css:
+
+.single-product{
+  margin-top: 80px;
+}
+.single-product .col-2{
+  padding: 0;
+}
+.single-product .col2 img{
+  padding: 20 px;
+}
+.single-product h4{
+  color: var(--gris);
+  margin: 20px 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+.single-product select{
+  display: block;
+  padding: 10px;
+  margin-top: 20px;
+}
+.single-product input{
+  width: 50px;
+  height: 40px;
+  padding-left: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+  border: 1px solid #6f3bff;
+}
+input:focus{
+  outline: none ;
+}
+.single-product .fa fa-indent { s
+  color: var(--primair);
+  margin-left: 10px;
+}
+.small-img-row{
+  display: flex;
+  justify-content: space-between;
+}
+.small-img-col{
+  flex-basis: 30%;
+  cursor: pointer;
+}
+
+
+jv:::
+var ProductImg = document.getElementById("ProductImg");
+ var smallimg = document.getElementsByClassName("small-img");
+
+ smallimg[0].onclick = function(){
+  ProductImg.src= smallimg[0].src;
+ } 
+ smallimg[1].onclick = function(){
+  ProductImg.src= smallimg[1].src;
+ }
+ smallimg[2].onclick = function(){
+  ProductImg.src= smallimg[2].src;
+ }
