@@ -23,15 +23,3 @@ fermerNav.addEventListener("click", () =>{
 
 
 
-var ProductImg = document.getElementById("ProductImg");
- var smallimg = document.getElementsByClassName("small-img");
-
- smallimg[0].onclick = function(){
-  ProductImg.src= smallimg[0].src;
- } 
- smallimg[1].onclick = function(){
-  ProductImg.src= smallimg[1].src;
- }
- smallimg[2].onclick = function(){
-  ProductImg.src= smallimg[2].src;
- }
