@@ -13,22 +13,26 @@
 *,
 *::before
 *::after{
-  margin: 0;
+  margin: 0 ;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: inherit ;
 }
 
 html{
   box-sizing: border-box;
   font-size: 62.5% ;
+  
 
 }
 
 body{
+
+  
   font-family: 'poppins', sans-serif;
   font-size: 1.6rem;
   color: var( --noir);
   background-color: var(--blanche);
+  height: ;
 }
 ul, li {
   list-style: none;
@@ -588,6 +592,7 @@ p{
 .btn:hover{
   background: #563434;
 }
+
 
 
 
