@@ -1,197 +1,362 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width=device-width, initial-scale=E"> 
-   <link rel="stylesheet" href="style.css">
-  <title>Panier</title>
-</head> 
-
-
-<body>
-  
-    <header class="header">
-      <nav class="nav container">
-         <div class="navigation d-flex">
-            <div class="icon1">
-               <i class="bx bx-menu"></i>
-            </div>
-            <div class="logo">
-              <a href="#"> 
-                 <span>E</span>KRA
-                 <div>
-                 <span>ا</span>قرأ 
-                 </div>
-               </a>
-            </div>
-              <div class="menu"> 
-                 <i class="<box-icon name='menu'></box-icon>"></i>
-                 <div class="top">
-                    <span class="fermer "> 
-                      fermer 
-                      <i class="bx bx-x"></i>
-                    </span>
-                 </div>
-                 
-                
-                   <ul class="nav_list d-flex">
-                      <li class="nav-item">
-                         <a href="file:///C:/Users/Tassili/OneDrive/Bureau/E-book/site.html" class="nav-link ">
-                           Accueil
-                         </a>
-
-                        </li>
-                        <li class="nav-item">
-                          <a href="file:///C:/Users/Tassili/OneDrive/Bureau/E-book/boutique.html" class="nav-link ">
-                           Boutique
-                          </a>
-                       </li>
-                       <li class="nav-item">
-                         <a href="#" class="nav-link ">
-                           Blog 
-                         </a>
-                       </li>
-                       <li class="nav-item">
-                         <a href="#" class="nav-link ">
-                           A propos de nous
-                         </a>
-                       </li>
-                       <li class="nav-item">
-                         <a href="file:///C:/Users/Tassili/OneDrive/Bureau/E-book/serviceclients.html" class="nav-link ">
-                           service clients
-                         </a>
-                       </li>
-                   </ul>
-                 
-                </div>
-             <div>
-            <div class="icons d-flex"   >
-              
-                 
-                    <div> <a href=" file:///C:/Users/Tassili/OneDrive/Bureau/E-book/formulaire.html#" >
-                      <i class="bx bx-user" ></i>
-                    </a> </div>
-                  <div><i class="bx bx-heart"></i></div>
-                  
-                  <div>
-                    <a href="panier.html">  <i class='bx bx-shopping-bag'></i> </a>
-                    <span class="align-center"> 0  </span>
-                  </div>     
-         </div>
-         </div>
-      </nav>
-
-      <section id="livre" class="flex-column-centre">
-        <div id="blocTitrePanier" class="fmex-start size80">
-          <h2 id="titre-panier">
-            veuiller ajouter des livre au panier <br>
-            pas de livre dans le panier
-          </h2>
-        </div>
-
-        <div id="livre-fiches" class="flex-around">
-          <div id="injectJs">
-            <div id="livreProduit" class="flex-around">
-           
+    <head>
+        <meta charset="UTF-8">
+        <title>Panier</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="panier.js"></script>
+        <script type="text/javascript">
+            function ajouter()
+            {
+                var code = parseInt(document.getElementById("id").value);
+                var qte = parseInt(document.getElementById("qte").value);
+                var prix = parseInt(document.getElementById("prix").value);
+                var monPanier = new Panier();
+                monPanier.ajouterArticle(code, qte, prix);
+                var tableau = document.getElementById("tableau");
+                var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+                if (longueurTab > 0)
+                {
+                    for(var i = longueurTab ; i > 0  ; i--)
+                    {
+                        monPanier.ajouterArticle(parseInt(tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                        tableau.deleteRow(i);
+                    }
+                }
+                var longueur = monPanier.liste.length;
+                for(var i = 0 ; i < longueur ; i++)
+                {
+                    var ligne = monPanier.liste[i];
+                    var ligneTableau = tableau.insertRow(-1);
+                    var colonne1 = ligneTableau.insertCell(0);
+                    colonne1.innerHTML += ligne.getCode();
+                    var colonne2 = ligneTableau.insertCell(1);
+                    colonne2.innerHTML += ligne.qteArticle;
+                    var colonne3 = ligneTableau.insertCell(2);
+                    colonne3.innerHTML += ligne.prixArticle;
+                    var colonne4 = ligneTableau.insertCell(3);
+                    colonne4.innerHTML += ligne.getPrixLigne();
+                    var colonne5 = ligneTableau.insertCell(4);
+                    colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+                }
+                document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+                document.getElementById("nbreLignes").innerHTML = longueur;
+            }
             
-         <div id="blocImage">
-          <img src="https://les-raccourcis-clavier.fr/wp-content/uploads/2020/07/ensemble-vide-472x295.png" alt="image vide">
-         </div>
-         <div id="blocProduit" class="flex-column-around">
-          <h2> livre </h2>
-          <p> livre de xxxx</p>
-           <p>prix</p>
-           <p>  <i class="fa-solid fa-truck"></i> en stock</p>
-         </div>
-         <div id="bloc-change-produit" class="flex-around">
-          <div class="flex-centre">
-            <button class="bouton-moins">-</button>
-            <span class="produit-quantité">0</span>
-            <button class="bouton-plus">+</button>
-          </div>
-          <div> <p> prix</p></div>
-          <div> <i class="fa-solid fa-trash rouge"></i> </div>
-         </div>
+            function supprimer(code)
+            {
+                var monPanier = new Panier();
+                var tableau = document.getElementById("tableau");
+                var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+                if (longueurTab > 0)
+                {
+                    for(var i = longueurTab ; i > 0  ; i--)
+                    {
+                        monPanier.ajouterArticle(parseInt(tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                        tableau.deleteRow(i);
+                    }
+                }
+                monPanier.supprimerArticle(code);
+                var longueur = monPanier.liste.length;
+                for(var i = 0 ; i < longueur ; i++)
+                {
+                    var ligne = monPanier.liste[i];
+                    var ligneTableau = tableau.insertRow(-1);
+                    var colonne1 = ligneTableau.insertCell(0);
+                    colonne1.innerHTML += ligne.getCode();
+                    var colonne2 = ligneTableau.insertCell(1);
+                    colonne2.innerHTML += ligne.qteArticle;
+                    var colonne3 = ligneTableau.insertCell(2);
+                    colonne3.innerHTML += ligne.prixArticle;
+                    var colonne4 = ligneTableau.insertCell(3);
+                    colonne4.innerHTML += ligne.getPrixLigne();
+                    var colonne5 = ligneTableau.insertCell(4);
+                    colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+                }
+                document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+                document.getElementById("nbreLignes").innerHTML = longueur;
+            }
+        </script>
+    </head>
+    <body>
+      <nav class="nav container">
+        <div class="navigation d-flex">
+           <div class="icon1">
+              <i class="bx bx-menu"></i>
+           </div>
+           <div class="logo">
+             <a href="#"> 
+                <span>E</span>KRA
+                <div>
+                <span>ا</span>قرأ 
+                </div>
+              </a>
+           </div>
+             <div class="menu"> 
+                <i class="<box-icon name='menu'></box-icon>"></i>
+                <div class="top">
+                   <span class="fermer "> 
+                     fermer 
+                     <i class="bx bx-x"></i>
+                   </span>
+                </div>
+                
+               
+                  <ul class="nav_list d-flex">
+                     <li class="nav-item">
+                        <a href="file:///C:/Users/Tassili/OneDrive/Bureau/E-book/site.html" class="nav-link ">
+                          Accueil
+                        </a>
+    
+                       </li>
+                       <li class="nav-item">
+                         <a href="file:///C:/Users/Tassili/OneDrive/Bureau/E-book/boutique.html" class="nav-link ">
+                          Boutique
+                         </a>
+                      </li>
+                      
+                      <li class="nav-item">
+                        <a href="#" class="nav-link ">
+                          A propos de nous
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="file:///C:/Users/Tassili/OneDrive/Bureau/E-book/serviceclients.html" class="nav-link ">
+                          Contact
+                        </a>
+                      </li>
+                  </ul>
+                
+               </div>
+            <div>
+           <div class="icons d-flex"   >
+             
+            <div> <a href=" file:///C:/Users/Tassili/OneDrive/Bureau/E-book/formulaire.html#" >
+              <i class="bx bx-user" ></i>
+            </a> </div>
+          <div><i class="bx bx-heart"></i></div>
+          
+          <div>
+            <a href="panier.html">  <i class='bx bx-shopping-bag'></i> </a>
+            <span class="align-center"> 0  </span>
           </div>
         </div>
-      </div>
-      </section>
-      
-      <footer id="footer" class="section footer">
-        <div class="container">
-           <div class="footer-container"> 
-               <div class="footer-center">
-                 <h3> ENTREPRISE</h3>
-                 <a href="#"> Marque</a><br>
-                 <a href="#"> code promo</a><br>
-                 <a href="#"> offre special</a><br>
-                 <a href="#"> carte du site</a><br>
-               </div>
-   
-               <div class="footer-center">
-                 <h3> ENTREPRISE</h3>
-                 <a href="#"> Marque</a><br>
-                 <a href="#"> code promo</a><br>
-                 <a href="#"> offre special</a><br>
-                 <a href="#"> carte du site</a><br>
-               </div>
-   
-               <div class="footer-center">
-                 <h3> ENTREPRISE</h3>
-                 <a href="#"> Marque</a><br>
-                 <a href="#"> code promo</a><br>
-                 <a href="#"> offre special</a> <br>
-                 <a href="#"> carte du site</a><br>
-               </div>
-   
-               <div class="footer-center">
-                 <h3> ENTREPRISE</h3>
-                 <a href="#"> Marque</a> <br>
-                 <a href="#"> code promo</a><br>
-                 <a href="#"> offre special</a><br>
-                 <a href="#"> carte du site</a><br>
-               </div>
-   
-               <div class="footer-center">
-                 <h3> CONTACTER NOUS</h3>
-                 <div>
-                   <span>
-                     <i class="fa fa-map-marked-alt"></i>
-                   </span>
-                   Audin,Alger,Algerie
-                 </div>
-                 <div>
-                   <span>
-                     <i class="fa fa-envelope"></i>
-                   </span>
-                   ekra@gmail.com
-                 </div>
-                 <div>
-                   <span>
-                     <i class="fa fa-phone"></i>
-                   </span>
-                   0558983930
-                 </div>
-                 <div>
-                   <span>
-                     <i class="fa fa-paper-plane"></i>
-                   </span>
-                   ALGER
-                 </div>
-               </div>
-            </div>  
-            <div class="copyright"> 
-             copyright@2022 tous droits reservés 
-             <a href="#" > EKRA </a>
-   
-            </div>
         </div>
-   </footer>
-   
-   
-    <script type="text/javascript" src="panier.js" > </script>
-   </body>
-   </html>
+     </nav>
+        <section  class="container">
+            <article class="well form-inline pull-left col-lg-5">
+                <legend>Gestion du panier</legend>
+                <label class="col-lg-3">Identifiant</label> : <input type = "number" id = "id" style="width:120px" class="input-sm form-control"></input><br><br>
+                <label class="col-lg-3" >Quantité</label> : <input type = "number" id = "qte" style="width:120px" class="input-sm form-control"></input><br><br> 
+                <label class="col-lg-3">Prix</label> : <input type = "number" id = "prix" style="width:120px" class="input-sm form-control"></input><br><br>
+                <button class="btn btn-primary" type="submit" onclick="ajouter()"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter au panier</button>
+            </article>
+        </section>
+        <section class="container">
+            <article class="well form-inline pull-left col-lg-5">
+                <legend>Contenu du panier</legend>
+                <table id="tableau" class="table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Qte</th>
+                            <th>Prix unitaire</th>
+                            <th>Prix de la ligne</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                </table>
+                <br><label>Prix du panier total</label> : <label id = "prixTotal"></label>
+                <label id = "nbreLignes" hidden>0</label>
+            </article>
+        </section>
+  </body>
+  <style>
+    .navigation{
+  height: 7rem;
+  justify-content: space-between;
+
+}
+.d-flex{
+  display: flex;
+ align-items: center;
+}
+.icon1{ 
+  display: none;
+}
+.menu .top{
+  display: none;
+}
+.logo{
+  font-weight: 700;
+  font-size: 2rem;
+  padding: 0rem 1.5rem;
+  
+
+}
+.logo span {
+  font-size: 3rem ;
+  color: var(--primair);
+
+}
+.nav-item:not(:last-child) {
+  margin: 0.5rem;
+
+}
+.nav-item:first-child .nav-link {
+
+  color: var(--primair)
+}
+.nav-link{
+  padding: 0 1rem;
+  transition: all 300ms ease-in-out;
+}
+.nav-link:hover{
+  color: var(--primair);
+}
+.nav .icons div {
+   font-size: 2rem;
+   padding: 0.5rem;
+   cursor: pointer;
+   transition: all 300ms ease-in-out;
+} 
+.nav .icons div:not(:last-child){
+  margin-right: 0.5rem;
+} 
+.nav .icons div:hover{
+  color: var(--primair);
+}
+.nav .icons div:last-child{
+  position: relative;
+}
+.nav .icons div span{
+  position: absolute;
+  top: -0.5rem;
+  right: -1.2rem;
+  font-size: 1rem ;
+  font-weight: 600;
+  color: var(--blanche);
+  background-color: var(--primair);
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 50%;
+}
+.align-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banniere{
+  height: calc(100vh - 7rem);
+  background-color: beige;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+.banniere-contenu{
+  height: 100%;
+
+}
+.banniere-contenu .gauche  {
+  margin-top: -5rem;
+
+}
+.banniere-contenu .gauche .sous-titre {
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
+}
+.banniere-contenu .gauche .titre{
+  
+  line-height: 1.3;
+  font-weight: 600;
+  text-align: left;
+  font-size: 4rem;
+
+
+}
+.banniere-contenu .gauche .couleur{
+  color: var(--primair);
+
+}
+.banniere-contenu .gauche h5 {
+  font-weight: 400;
+  margin-top: 2rem;
+
+}
+.btn {
+  display: inline;
+  border-radius: 5rem;
+  background-color: var(--primair);
+  padding: 1.3rem 5rem;
+  color: var(--blanche);
+  font-weight: 600;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.3);
+  margin-top: 4rem;
+}
+.banniere-contenu .droite img{
+  position: absolute ;
+  bottom: 0;
+  
+  width: 1080px;
+
+
+}
+
+.service{
+  border: 1px solid #ccc;
+  padding: 1rem 1rem 2rem 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.service-center{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 5rem;
+}
+.service .icon{
+  background-color: var(--primair);
+  height: 80px;
+  width: 80px;
+  position: relative;
+  border-radius: 50%;
+}
+.service .icon i{
+  position: absolute;
+  font-size: 4rem;
+  top: 50%;
+  left: 50%;
+  color: var(--blanche);
+  transform: translate(-50%, -50%);
+
+}
+.service h4 {
+  margin-bottom: 0.3rem;
+}
+.service .text{
+  font-size: 1.5rem;
+  color: #777
+  ;
+}
+.titre{
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 5rem;
+  font-weight: 600;
+}
+.titre h1 {
+  font-weight: 400;
+}
+.titre span {
+  color: var(--primair);
+}
+.centre-produit{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 5rem;
+  margin-bottom: 5rem;
+}
+  </style>
+</html>
